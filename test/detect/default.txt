@@ -1,0 +1,22 @@
+*.md @doc-team
+
+[README Owners]
+README.md @user1 @user2
+internal/README.md @user4
+
+[README other owners]
+README.md @user3
+
+[Documentation][2] @docs-team
+docs/
+README.md
+
+^[Database] @database-team
+model/db/
+config/db/database-setup.md @docs-team
+
+[Ruby]
+*.rb @root
+
+^[Go]
+*.go @root
