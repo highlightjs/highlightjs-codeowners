@@ -9,6 +9,8 @@ export default (hljs) => {
     return {
       name: 'codeowners',
       case_insensitive: true,
+      disableAutodetect: true,
+      aliases: ['codeowners'],
       contains: [
       {
         scope: 'keyword',
