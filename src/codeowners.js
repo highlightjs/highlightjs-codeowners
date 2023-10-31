@@ -10,34 +10,20 @@ export default (hljs) => {
       name: 'codeowners',
       case_insensitive: true,
       contains: [
-        {
-          scope: 'number',
-          begin: '\\[\\d+\\]',
-          end: '(?=\\s|$)',
-        },
-        {
-          scope: 'regexp',
-          begin: '^\\^|\\*',
-        },
-        {
-          scope: 'attr',
-          begin: '^\\s*(?![#^*[])\\S|(?<=\\*)\\S*',
-          end: '(?=\\s|$)',
-          contains: [
-            {
-              scope: 'regexp',
-              begin: '\\*',
-            },
-          ],
-        },
-        {
-          scope: 'keyword',
-          begin: '\\[(?!\\d+\\])[^\\]]+\\]',
-        },
-        {
-          scope: 'variable',
-          begin: '\\S*@.*$',
-        },
+      {
+        scope: 'keyword',
+        begin: /^(\/?)(\*|\S+)/,
+        end: '\\s',
+        relevance: 0
+      },
+      {
+        scope: 'string',
+        begin: /\@/,
+        end: '\\s',
+        relevance: 0
+      },
+        hljs.APOS_STRING_MODE,
+        hljs.QUOTE_STRING_MODE,
         hljs.HASH_COMMENT_MODE,
       ],
     };
