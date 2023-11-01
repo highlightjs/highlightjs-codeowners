@@ -6,27 +6,43 @@ Description: language definition for CODEOWNERS files
 
 /** @type LanguageFn */
 export default (hljs) => {
-    return {
+  return {
       name: 'codeowners',
       case_insensitive: true,
       disableAutodetect: true,
       aliases: ['codeowners'],
-      contains: [
+    contains: [
+      {
+        scope: 'number',
+        begin: '\\[\\d+\\]',
+        end: '(?=\\s|$)',
+      },
+      {
+        scope: 'regexp',
+        begin: '^\\^|\\*',
+      },
+      {
+        scope: 'attr',
+        begin: '^\\s*(?![#^*[])\\S|(?<=\\*)\\S*',
+        end: '(?=\\s|$)',
+        contains: [
+          {
+            scope: 'regexp',
+            begin: '\\*',
+          },
+        ],
+      },
       {
         scope: 'keyword',
-        begin: /^(\/?)(\*|\S+)/,
-        end: '\\s',
-        relevance: 0
+        begin: '\\[(?!\\d+\\])[^\\]]+\\]',
       },
       {
-        scope: 'string',
-        begin: /\@/,
-        end: '\\s',
-        relevance: 0
+        scope: 'variable',
+        begin: '\\S*@.*$',
       },
-        hljs.APOS_STRING_MODE,
-        hljs.QUOTE_STRING_MODE,
-        hljs.HASH_COMMENT_MODE,
-      ],
-    };
+      hljs.APOS_STRING_MODE,
+      hljs.QUOTE_STRING_MODE,
+      hljs.HASH_COMMENT_MODE,
+    ],
   };
+};
