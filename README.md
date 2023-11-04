@@ -36,8 +36,8 @@ If you're using Node / Webpack / Rollup / Browserify, etc, simply require the la
 
 ```javascript
 var hljs = require('highlightjs');
-var hljsCypher = require('highlightjs-codeowners');
+var hljsCodeowners = require('highlightjs-codeowners');
 
-hljs.registerLanguage("codeowners", hljsCypher);
+hljs.registerLanguage("codeowners", hljsCodeowners);
 hljs.highlightAll();
 ```
